@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="{% static 'AtithiApp/css/splash.css' %}">
+    <link rel="stylesheet" href="{% static 'AtithiApp/css/register.css' %}">
+    <link rel="stylesheet" href="{% static 'AtithiApp/css/checkin.css' %}">
+    <script src="https://kit.fontawesome.com/57d8462694.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar">
+        <h2 onclick="home()"> {{ currentUser.first_name }} </h2>
+        <ul class="mainmenu">
+
+            <li><a href="{% url 'AtithiApp:dashboard' %}"> <i class="fas fa-chart-line"></i> Dashboard </a>
+                <ul class="submenu">
+
+                </ul>
+            </li>
+
+            <li><a href="{% url 'AtithiApp:departures' %}"> <i class="fas fa-plane-departure"></i> Departures </a>
+                <ul class="submenu">
+
+                </ul>
+            </li>
+
+            <li><a href="{% url 'AtithiApp:inhouse' %}"> <i class="fas fa-home"></i> In House </a>
+                <ul class="submenu">
+
+                </ul>
+            </li>
+
+            <li><a href="{% url 'AtithiApp:paststay' %}"> <i class="fas fa-plane-arrival"></i> Arrivals </a>
+                <ul class="submenu">
+
+                </ul>
+            </li>
+
+            {% if currentUser.is_superuser %}
+                <li><a href="#"> <i class="fas fa-user-cog"></i> Admin </a>
+                    <ul class="submenu">
+
+                    </ul>
+                </li>
+            {% endif %}
+
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'AtithiApp:logout' %}"> <i class="fas fa-door-open"></i> Logout </a> </li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <div class="page-content">
+        <div class="form-v10-content">
+
+            <form class="form-detail" action="#" method="post" id="regform"> {% csrf_token %}
+                <div class="form-right ">
+
+
+                    <div class="tab">
+                        <h1 style="margin-top: 40px">Check In</h1>
+                        <h2>Personal Information:</h2>
+                        <div class="form-group">
+                            <div class="form-row form-row-1"> {{ form.firstName }} </div>
+                            <div class="form-row form-row-2"> {{ form.lastName }} </div>
+                        </div>
+
+                        <div class="form-row"> {{ form.gender }} </div>
+                        <div class="form-row"> {{ form.address1 }} </div>
+                        <div class="form-row"> {{ form.city }} </div>
+                        <div class="form-group">
+                            <div class="form-row form-row-1"> {{ form.state }} </div>
+                            <div class="form-row form-row-2"> {{ form.zipcode }} </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-row form-row-1"> {{ form.driverLicense }} </div>
+                            <div class="form-row form-row-2"> {{ form.dob }} </div>
+                        </div>
+                        <div class="form-row"> {{ form.phoneNumber }} </div>
+                    </div>
+
+                    <div class="tab">
+                        <h1 style="margin-top: 40px">Check In</h1>
+                        <h2>Stay Information:</h2>
+                        <div class="form-row"> {{ form.checkin }} </div>
+                        <div class="form-row"> {{ form.checkout }} </div>
+                        <div class="form-row"> {{ form.adults }} </div>
+                        <div class="form-row"> {{ form.children }} </div>
+                    </div>
+
+                    <div class="tab">
+                        <h1 style="margin-top: 40px">Check In</h1>
+                        <h2>Payment Information:</h2>
+                        <div class="form-row"> {{ form.paymentAmount }} </div>
+                        <div class="form-row"> {{ form.petFee }} </div>
+                        <div class="form-row"> {{ form.roomNumber }} </div>
+                    </div>
+
+                    <div style="text-align: center; padding: 15px;">
+                        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                        <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                    </div>
+
+                    <div style="text-align:center;margin:20px 40px 40px 40px; ">
+                        <span class="step"></span>
+                        <span class="step"></span>
+                        <span class="step"></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="{% static 'AtithiApp/js/checkin.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Atithi Management System</title>
+    <link rel="stylesheet" href="{% static 'AtithiApp/css/splash.css' %}">
+    <link rel="stylesheet" href="{% static 'AtithiApp/css/inhouse.css' %}">
+    <script src="https://kit.fontawesome.com/57d8462694.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar">
+        <h2 onclick="home()"> {{ currentUser.first_name }}</h2>
+        <ul class="mainmenu">
+
+            <li><a href="{% url 'AtithiApp:dashboard' %}"> <i class="fas fa-chart-line"></i> Dashboard </a>
+                <ul class="submenu">
+
+                </ul>
+            </li>
+
+            <li><a href="{% url 'AtithiApp:departures' %}"> <i class="fas fa-plane-departure"></i> Departures </a>
+                <ul class="submenu">
+
+                </ul>
+            </li>
+
+            <li><a href="{% url 'AtithiApp:inhouse' %}"> <i class="fas fa-home"></i> In House </a>
+                <ul class="submenu">
+
+                </ul>
+            </li>
+
+            <li><a href="{% url 'AtithiApp:paststay' %}"> <i class="fas fa-plane-arrival"></i> Arrivals </a>
+                <ul class="submenu">
+
+                </ul>
+            </li>
+
+            {% if currentUser.is_superuser %}
+                <li><a href="#"> <i class="fas fa-user-cog"></i> Admin </a>
+                    <ul class="submenu">
+
+                    </ul>
+                </li>
+            {% endif %}
+
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'AtithiApp:logout' %}"> <i class="fas fa-door-open"></i> Logout </a> </li>
+            {% endif %}
+        </ul>
+
+    </div>
+    <div class="main_content">
+        <div class="header"> <h3> Atithi Management System </h3> </div>
+        <div class="info">
+            <div>
+                <p>
+                <table id="customers">
+                    <tr>
+                        <th>Select</th>
+                        <th>Room Number</th>
+                        <th>Name</th>
+                        <th>Check In</th>
+                        <th>Check Out</th>
+                        <th>Payment</th>
+                    </tr>
+                    {% for guest in guestList %}
+                        <tr>
+                            <td><a href="#"><i class="fas fa-check"></i></a></td>
+                            <td width="20px">{{ guest.roomNumber }}</td>
+                            <td width="50px">{{ guest.firstName }} {{ guest.lastName }}</td>
+                            <td width="20px">{{ guest.checkin }}</td>
+                            <td width="20px">{{ guest.checkout }}</td>
+                            <td width="20px"> $ {{ guest.paymentAmount }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'AtithiApp/js/viewList.js' %}"></script>
+</body>
+</html>

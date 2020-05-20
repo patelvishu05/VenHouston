@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: Raleway;
+  }
+
+  body {
+    /*background:url(../background2.png);*/
+  }
+
+  /*#regForm {*/
+  /*  background-color: #F3F5F9;*/
+  /*  margin: 0px auto;*/
+  /*  font-family: Raleway;*/
+  /*  padding: 40px;*/
+  /*  width: 40%;*/
+  /*  min-width: 300px;*/
+  /*  border-radius:10px;*/
+  /*}*/
+  h1 {
+    text-align: center;
+  }
+  input {
+    padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    font-family: Raleway;
+    border: 1px solid #aaaaaa;
+  }
+  input.invalid {
+    background-color: #EE6C4D;
+  }
+  .tab {
+    display: none;
+  }
+  button {
+    background-color: #EE6C4D ;
+    color: #F3F5F9;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: Raleway;
+    min-width: 100px;
+    cursor: pointer;
+  }
+  button:hover {
+    opacity: 0.8;
+  }
+  #prevBtn {
+    background-color: #bbbbbb;
+  }
+  .step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    /*background-color: #bbbbbb;*/
+    background-color: #EE6C4D;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+  }
+  .step.active {
+    opacity: 1;
+  }
+  .step.finish {
+    background-color: #4CAF50;
+  }
+
+input[type=date]::-webkit-inner-spin-button,
+input[type=date]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="{% static 'AtithiApp/css/splash.css' %}">
+    <link rel="stylesheet" href="{% static 'AtithiApp/css/register.css' %}">
+    <link rel="stylesheet" href="{% static 'AtithiApp/css/checkin.css' %}">
+    <script src="https://kit.fontawesome.com/57d8462694.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar">
+        <h2 onclick="home()"> {{ currentUser.first_name }} </h2>
+        <ul class="mainmenu">
+
+            <li><a href="{% url 'AtithiApp:dashboard' %}"> <i class="fas fa-chart-line"></i> Dashboard </a>
+                <ul class="submenu">
+
+                </ul>
+            </li>
+
+            <li><a href="{% url 'AtithiApp:departures' %}"> <i class="fas fa-plane-departure"></i> Departures </a>
+                <ul class="submenu">
+
+                </ul>
+            </li>
+
+            <li><a href="{% url 'AtithiApp:inhouse' %}"> <i class="fas fa-home"></i> In House </a>
+                <ul class="submenu">
+
+                </ul>
+            </li>
+
+            <li><a href="{% url 'AtithiApp:paststay' %}"> <i class="fas fa-plane-arrival"></i> Arrivals </a>
+                <ul class="submenu">
+
+                </ul>
+            </li>
+
+            {% if currentUser.is_superuser %}
+                <li><a href="#"> <i class="fas fa-user-cog"></i> Admin </a>
+                    <ul class="submenu">
+
+                    </ul>
+                </li>
+            {% endif %}
+
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'AtithiApp:logout' %}"> <i class="fas fa-door-open"></i> Logout </a> </li>
+            {% endif %}
+        </ul>
+    </div>
+    <div class="page-content">
+        <div class="form-v10-content">
+
+            <form class="form-detail" action="#" method="post" id="regform"> {% csrf_token %}
+                <div class="form-right ">
+                    <div class="tab">
+                        <h1 style="margin-top: 40px">Check In</h1>
+                        <h2>Personal Information:</h2>
+                        <div class="form-group">
+                            <div class="form-row form-row-1"> <input type="text" name="firstName" required id="firstName" class="form-detail" placeholder="First Name" value={{ guest.firstName }}> </div>
+                            <div class="form-row form-row-2"> <input type="text" name="lastName" required id="lastName" class="form-detail" placeholder="Last Name" value={{ guest.lastName }}> </div>
+                        </div>
+
+                        <div class="form-row"> <select name="gender" required id="gender" class="form-detail" placeholder="Gender" value={{ guest.gender }}>
+                            <option value="" selected>Select Gender</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select> </div>
+                        <div class="form-row"> <input type="text" name="address1" required id="address1" class="form-detail" placeholder="Street Address 1" value={{ guest.address1 }}> </div>
+                        <div class="form-row"> <input type="text" name="city" required id="city" class="form-detail" placeholder="City" value={{ guest.city }}> </div>
+                        <div class="form-group">
+                            <div class="form-row form-row-1"> <input type="text" name="state" required id="state" class="form-detail" placeholder="State" value={{ guest.state }}> </div>
+                            <div class="form-row form-row-2"> <input type="text" name="zipcode" required id="zipcode" class="form-detail" placeholder="Zip Code" value={{ guest.zipcode }}> </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-row form-row-1"> <input type="text" name="driverLicense" required id="driverLicense" class="form-detail" placeholder="Driver License" value={{ guest.driverLicense }}> </div>
+                            <div class="form-row form-row-2"> <input type="date" name="dob" required id="dob" class="form-detail" placeholder="mm/dd/yyyy" value={{ guest.dob |date:"Y-m-d" }}> </div>
+                        </div>
+                        <div class="form-row"> <input type="text" name="phoneNumber" required id="phoneNumber" class="form-detail" placeholder="Phone Number" value={{ guest.phoneNumber }}> </div>
+                    </div>
+
+                    <div class="tab">
+                        <h1 style="margin-top: 40px">Check In</h1>
+                        <h2>Stay Information:</h2>
+                        <div class="form-row"> {{ personalForm.checkin }} </div>
+                        <div class="form-row"> {{ personalForm.checkout }} </div>
+                        <div class="form-row"> {{ personalForm.adults }} </div>
+                        <div class="form-row"> {{ personalForm.children }} </div>
+                    </div>
+
+                    <div class="tab">
+                        <h1 style="margin-top: 40px">Check In</h1>
+                        <h2>Payment Information:</h2>
+                        <div class="form-row"> {{ personalForm.paymentAmount }} </div>
+                        <div class="form-row"> {{ personalForm.petFee }} </div>
+                        <div class="form-row"> {{ personalForm.roomNumber }} </div>
+                    </div>
+
+                    <div style="text-align: center; padding: 15px;">
+                        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                        <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                    </div>
+
+                    <div style="text-align:center;margin:20px 40px 40px 40px; ">
+                        <span class="step"></span>
+                        <span class="step"></span>
+                        <span class="step"></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="{% static 'AtithiApp/js/checkin.js' %}"></script>
+</body>
+</html>

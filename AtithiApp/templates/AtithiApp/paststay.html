@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Atithi Management System</title>
+    <link rel="stylesheet" href="{% static 'AtithiApp/css/splash.css' %}">
+    <link rel="stylesheet" href="{% static 'AtithiApp/css/paststay.css' %}">
+    <script src="https://kit.fontawesome.com/57d8462694.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar">
+        <h2 onclick="home()"> {{ currentUser.first_name }}</h2>
+        <ul class="mainmenu">
+
+            <li><a href="{% url 'AtithiApp:dashboard' %}"> <i class="fas fa-chart-line"></i> Dashboard </a>
+                <ul class="submenu">
+
+                </ul>
+            </li>
+
+            <li><a href="{% url 'AtithiApp:departures' %}"> <i class="fas fa-plane-departure"></i> Departures </a>
+                <ul class="submenu">
+
+                </ul>
+            </li>
+
+            <li><a href="{% url 'AtithiApp:inhouse' %}"> <i class="fas fa-home"></i> In House </a>
+                <ul class="submenu">
+
+                </ul>
+            </li>
+
+            <li><a href="{% url 'AtithiApp:paststay' %}"> <i class="fas fa-plane-arrival"></i> Arrivals </a>
+                <ul class="submenu">
+
+                </ul>
+            </li>
+
+            {% if currentUser.is_superuser %}
+                <li><a href="#"> <i class="fas fa-user-cog"></i> Admin </a>
+                    <ul class="submenu">
+
+                    </ul>
+                </li>
+            {% endif %}
+
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'AtithiApp:logout' %}"> <i class="fas fa-door-open"></i> Logout </a> </li>
+            {% endif %}
+        </ul>
+
+    </div>
+    <div class="main_content">
+        <p class="fontColor">Have you stayed with us before ?</p>
+        <div class="flex-container">
+            <div> <a class="button" onclick="existingGuest()"> Yes </a> </div>
+            <div> <a href={% url 'AtithiApp:checkin' %} class="button"> No </a> </div>
+        </div>
+    </div>
+    <div id="yesGuest">
+        {#        <form class="#" method="GET" action="{% url 'AtithiApp:search' %}">#}
+        <form class="#" method="GET" action="{% url 'AtithiApp:selectDates' %}">
+            <input class="existingDL" type="text" name="dl" placeholder="Enter Driver License" />
+            <div class="existingGuestForm">
+                <input type="submit" class="button" value="Submit" />
+                <a href="#" class="button" onclick="hideGuest()" > Cancel </a>
+            </div>
+        </form>
+    </div>
+
+</div>
+<script src="{% static 'AtithiApp/js/script.js' %}"></script>
+</body>
+</html>

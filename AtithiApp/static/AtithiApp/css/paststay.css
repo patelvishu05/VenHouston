@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: Raleway;
+}
+
+.fontColor {
+    color: #4B4276;
+    font-size: 50px;
+    margin-top: 15vh;
+    margin-left: 35vh;
+}
+
+.button {
+    background-color: #EE6C4D;
+    border: none;
+    color: white;
+    min-width: 200px;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+.flex-container {
+    position: absolute;
+    margin-top: 0vh;
+    margin-left: 35ch;
+    display: flex;
+}
+
+.flex-container > div {
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#yesGuest{
+    display: none;
+    position: absolute;
+    margin-top: 55vh;
+    margin-left: 50vh;
+}
+
+.existingDL {
+    width: 200%;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    font-size: 20px;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    margin: 4px 2px;
+    box-sizing: content-box;
+      margin-left: 10vh;
+    margin-bottom: 20px;
+}
+
+.existingGuestForm {
+    position: absolute;
+    margin-left: 38vh;
+    display: flex;
+    flex-direction: row;
+}
